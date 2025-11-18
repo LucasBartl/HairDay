@@ -1,5 +1,9 @@
 {
-    "schedules": [
-     
-    ]
+  "schedules": [
+    {
+      "id": 1763505772266,
+      "name": "Miguel Bartl",
+      "when": "2025-11-19T00:00:00.000Z"
+    }
+  ]
 }

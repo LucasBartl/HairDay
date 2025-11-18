@@ -4,6 +4,10 @@ const path = require("path");
 //Importando HTML
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+//Importando plugin de imagens
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+
+ 
 module.exports = {
     //targes define onde vamos exportar as configurações
     target: "web",
@@ -33,6 +37,13 @@ module.exports = {
             template: path.resolve( __dirname, "index.html"),
             favicon: path.resolve( "src", "assets","scissors.svg" ),
         }),
+        new CopyWebpackPlugin({
+            patterns:[
+                {
+                from: path.resolve(__dirname,"src", "assets"),
+                to: path.resolve(__dirname,"dist", "src", "assets"),
+}            ],
+        })
     ],
 
     //Importando o Css
@@ -42,6 +53,16 @@ module.exports = {
             {
                 test:/\.css$/,
                 use:["style-loader","css-loader"],
+            },
+            {
+                test:/\.js$/,
+                exclude:/node_module/,
+                use:{
+                    loader:"babel-loader",
+                    options:{
+                        presets:["@babel/preset-env"]
+                    }
+                }
             }
         ]
     }
